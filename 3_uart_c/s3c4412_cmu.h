@@ -1,0 +1,9 @@
+#ifndef S3C4412_CMU_H
+#define S3C4412_CMU_H
+
+#define CLK_SRC_PERIL0 			(0x10030000 + 0xC250)
+#define CLK_SRC_MASK_PERIL0 	(0x10030000 + 0xC350)
+#define CLK_DIV_PERIL0 			(0x10030000 + 0xC550)
+#define CLK_DIV_STAT_PERIL0 	(0x10030000 + 0xC650)
+
+#endif
