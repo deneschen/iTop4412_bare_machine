@@ -37,9 +37,9 @@ void delay(int loop)
 void uart_init(void)
 {
 	/* clock for uart init */
-	gpio_config(CLK_SRC_PERIL0, (0xF << 8), (0x1 << 8));
+	gpio_config(CLK_SRC_PERIL0, (0xF << 8), (0x6 << 8));
 	gpio_config(CLK_SRC_MASK_PERIL0, (0x1 << 8), (0x1 << 8));
-	gpio_config(CLK_DIV_PERIL0, (0xF << 8), (0x0 << 8));
+	gpio_config(CLK_DIV_PERIL0, (0xF << 8), (13 << 8));
 	
 	/* wait for div uart 2 stable */
 	while(*(volatile int *)CLK_DIV_STAT_PERIL0 & (0x1 << 8)) ;
@@ -52,7 +52,7 @@ void uart_init(void)
 	gpio_config(UCON2,  0xFFFFFFFF, 0x5);
 	gpio_config(UFCON2, 0xFFFFFFFF, 0x0);
 
-	gpio_config(UBRDIV2, 0xFF, 12);
+	gpio_config(UBRDIV2, 0xFF, 30);
 	gpio_config(UFRACVAL2, 0xF, 0);
 
 }

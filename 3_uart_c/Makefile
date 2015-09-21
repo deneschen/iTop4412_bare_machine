@@ -1,6 +1,6 @@
 CFLAGS := -nostdlib -O0
 TARGET := uart.bin
-$(TARGET) : start.o main.o
+$(TARGET) : start.o lowlevel_init.o main.o
 	$(CROSS_COMPILE)ld -T link.lds -o xxx.elf $^
 	$(CROSS_COMPILE)objcopy -O binary xxx.elf $@
 	$(CROSS_COMPILE)objdump -D xxx.elf > xxx.dis
