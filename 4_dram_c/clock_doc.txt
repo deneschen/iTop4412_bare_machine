@@ -1,0 +1,54 @@
+CMU_LEFTBUS
+SCLKmpll = 800Mhz
+ACLK_GDL = 200Mhz
+ACLK_GPL = 100Mhz
+
+[ 0x10034500 ] = 0x00000013
+DIVgdl = 4
+DIVgpl = 2
+-----------------------------------------
+CMU_RIGHTBUS
+SCLKmpll = 800Mhz
+ACLK_GDR = 200Mhz
+ACLK_GPR = 100Mhz
+
+[ 0x10038500 ] = 0x00000013
+DIVgdr = 4
+DIVgpr = 2
+-----------------------------------------
+CMU_DMC
+0x10040500 寄存器写入 0x00111113／0x10040504 寄存器写入 0x01011113。
+CLK_ACP = 200MHz
+PCLK_ACP = 100MHz
+SCLK_DPHY = 400MHz
+SCLK_DMC (DDR时钟) = 400MHz
+ACLK_DMCD = 200MHz
+ACLK_DMCP = 100MHz
+SCLK_G2D_ACP = 200MHz
+SCLK_C2C = 400MHz
+ACLK_C2C = 200MHz
+SCLK_PWI = 12MHz 
+-----------------------------------------
+CMU_CPU
+0x10044500寄存器写入0x01143730／0x10044504寄存器写入 0x00000004。
+APLL = 1Ghz
+SCLK_APLL = 500Mhz
+ARMCLK = 1Ghz
+ACLK_COREM0 = 250Mhz
+ACLK_CORES = 1Ghz
+ACLK_COREM1 = 128Mhz
+PERIPHCLK = 250Mhz
+ATCLK = 200Mhz
+PCLK_DBG = 100Mhz
+SCLK_HPM = 200Mhz
+-----------------------------------------------
+CMU_TOP
+0x1003C510 寄存器写入 0x01205473。
+ACLK_400_MCUISP = 400MHz
+ACLK_200 = 200Mhz
+ACLK_266_GPS = 266Mhz
+ACLK_100 = 100Mhz
+ACLK_160 = 160Mhz
+ACLK_133 = 133Mhz
+SCLK_ONENAND = 133Mhz
+
