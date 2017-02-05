@@ -1,5 +1,5 @@
 CFLAGS := -nostdlib -O0
-TARGET := uart.bin
+TARGET := dram.bin
 $(TARGET) : start.o lowlevel_init.o mem_init.o main.o link.lds
 	$(CROSS_COMPILE)ld -T link.lds -o xxx.elf $^
 	$(CROSS_COMPILE)objcopy -O binary xxx.elf $@
@@ -19,10 +19,10 @@ clean:
 	rm -rf *.o *.elf *.bin *.dis
 
 flash:
-	mk4412 $(TARGET)
-#	sudo mkfs.vfat -F 32 -I /dev/sdc
-	sudo dd if=/dev/zero of=/dev/sdc bs=512 seek=1 iflag=dsync oflag=dsync count=2048
-	sudo dd if=./$(TARGET) of=/dev/sdc bs=512 seek=1 iflag=dsync oflag=dsync
+	./mk4412 $(TARGET)
+	sudo mkfs.vfat -F 32 -I /dev/sdb
+	sudo dd if=/dev/zero of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync count=2048
+	sudo dd if=./$(TARGET) of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync
 
 putty:
 	sudo putty &
