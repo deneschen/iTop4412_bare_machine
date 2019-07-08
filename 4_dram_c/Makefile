@@ -16,13 +16,13 @@ $(TARGET) : start.o lowlevel_init.o mem_init.o main.o link.lds
 	$(CROSS_COMPILE)gcc -E -P $< -o $@
 .PHONY:clean flash putty
 clean:
-	rm -rf *.o *.elf *.bin *.dis
+	rm -rf *.o *.elf *.bin *.dis mk4412
 
 flash:
+	gcc ../tools/mk4412.c -static -o mk4412
 	./mk4412 $(TARGET)
-	sudo mkfs.vfat -F 32 -I /dev/sdb
-	sudo dd if=/dev/zero of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync count=2048
-	sudo dd if=./$(TARGET) of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync
-
-putty:
-	sudo putty &
+	@if [ -b /dev/sdb ]; then \
+	sudo mkfs.vfat -F 32 -I /dev/sdb; \
+	sudo dd if=/dev/zero of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync count=2048; \
+	sudo dd if=./$(TARGET) of=/dev/sdb bs=512 seek=1 iflag=dsync oflag=dsync; \
+	fi
